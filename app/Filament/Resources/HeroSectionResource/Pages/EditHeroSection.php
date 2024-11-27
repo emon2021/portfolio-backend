@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources\HeroSectionResource\Pages;
 
-use App\Filament\Resources\HeroSectionResource;
 use Filament\Actions;
+use Illuminate\Support\Facades\Storage;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\HeroSectionResource;
 
 class EditHeroSection extends EditRecord
 {
@@ -15,5 +16,15 @@ class EditHeroSection extends EditRecord
         return [
             Actions\DeleteAction::make(),
         ];
+    }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        // Delete the existing image if a new one is uploaded
+        if (isset($data['image'])) {
+            Storage::disk('uploads')->delete($this->record->image);
+        }
+
+        return $data;
     }
 }

@@ -83,10 +83,9 @@
                 <div class="container">
                     <div class="col-lg-6 col-xl-6 float-start">
                         <div data-aos="fade-right" data-aos-delay="200">
-                            <p class="welcome_text text-uppercase">welcome to my
-                                world</p>
+                            <p class="welcome_text text-uppercase">{{ $hero->title }}</p>
                             <h1 class="title">
-                                Hi, I'm <span class="title_color">Limon</span>
+                                {{ $hero->greetings }} <span class="title_color">{{ $hero->name }}</span>
                             </h1>
                             <h3 class="text_random">
                                 <span>a</span>
@@ -99,26 +98,23 @@
                                     </h1>
                                 </div>
                             </h3>
-                            <p class="short_intro " data-aos="fade-up" data-aos-delay="400">
-                                I’m energetic and passionate <b>PHP & LARAVEL</b>
-                                developer looking for an opportunity to enhance my
-                                abilities in your organaization. I have working experience
-                                in <b>PHP & LARAVEL.</b>
-                            </p>
+                            <div class="short_intro " data-aos="fade-up" data-aos-delay="400">
+                                {!! $hero->description !!}
+                            </div>
                         </div>
                         <!----social media icon---->
                         <p class="welcome_text text-uppercase" data-aos="fade-up" data-aos-delay="200">Find with me.</p>
                         <div class="social_icon d-flex justify-content-start align-items-start" data-aos="fade-up"
                             data-aos-delay="600">
-                            <a href="https://facebook.com/emon.restless/" target="_blank"
+                            <a href="{{ $hero->facebook }}" target="_blank"
                                 class="icon d-flex justify-content-center align-items-center">
                                 <span class="icon-facebook-f"></span>
                             </a>
-                            <a href="https://github.com/emon2021/" target="_blank"
+                            <a href="{{ $hero->github }}" target="_blank"
                                 class="icon d-flex justify-content-center align-items-center">
                                 <span class="icon-github"></span>
                             </a>
-                            <a href="https://www.linkedin.com/in/emon2021/" target="_blank"
+                            <a href="{{ $hero->linkedin }}" target="_blank"
                                 class="icon d-flex justify-content-center align-items-center">
                                 <span class="icon-linkedin-in"></span>
                             </a>
@@ -126,7 +122,7 @@
                     </div>
                     <div class="col-lg-6 col-xl-6 d-flex justify-content-end pic_main" data-aos="fade-left"
                         data-aos-delay="200">
-                        <div class="pic_wrapper d-flex justify-content-center">
+                        <div class="pic_wrapper d-flex justify-content-center" style="background-image: url({{ asset('uploads/'.$hero->image) }});">
 
                         </div>
                     </div>
