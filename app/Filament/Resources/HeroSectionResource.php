@@ -145,10 +145,10 @@ class HeroSectionResource extends Resource
     }
 
     //  create option disable
-    public static function canCreate(): bool
-    {
-        return false;
-    }
+    // public static function canCreate(): bool
+    // {
+    //     return false;
+    // }
     //  delete option disable
     public static function canDelete(Model $record): bool
     {

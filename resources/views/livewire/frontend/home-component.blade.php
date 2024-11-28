@@ -83,9 +83,9 @@
                 <div class="container">
                     <div class="col-lg-6 col-xl-6 float-start">
                         <div data-aos="fade-right" data-aos-delay="200">
-                            <p class="welcome_text text-uppercase">{{ $hero->title }}</p>
+                            <p class="welcome_text text-uppercase">{{ $hero->title ?? '' }}</p>
                             <h1 class="title">
-                                {{ $hero->greetings }} <span class="title_color">{{ $hero->name }}</span>
+                                {{ $hero->greetings ?? '' }} <span class="title_color">{{ $hero->name ?? '' }}</span>
                             </h1>
                             <h3 class="text_random">
                                 <span>a</span>
@@ -99,22 +99,22 @@
                                 </div>
                             </h3>
                             <div class="short_intro " data-aos="fade-up" data-aos-delay="400">
-                                {!! $hero->description !!}
+                                {!! $hero->description ?? '' !!}
                             </div>
                         </div>
                         <!----social media icon---->
                         <p class="welcome_text text-uppercase" data-aos="fade-up" data-aos-delay="200">Find with me.</p>
                         <div class="social_icon d-flex justify-content-start align-items-start" data-aos="fade-up"
                             data-aos-delay="600">
-                            <a href="{{ $hero->facebook }}" target="_blank"
+                            <a href="{{ $hero->facebook ?? '' }}" target="_blank"
                                 class="icon d-flex justify-content-center align-items-center">
                                 <span class="icon-facebook-f"></span>
                             </a>
-                            <a href="{{ $hero->github }}" target="_blank"
+                            <a href="{{ $hero->github ?? '' }}" target="_blank"
                                 class="icon d-flex justify-content-center align-items-center">
                                 <span class="icon-github"></span>
                             </a>
-                            <a href="{{ $hero->linkedin }}" target="_blank"
+                            <a href="{{ $hero->linkedin ?? '' }}" target="_blank"
                                 class="icon d-flex justify-content-center align-items-center">
                                 <span class="icon-linkedin-in"></span>
                             </a>
@@ -122,7 +122,7 @@
                     </div>
                     <div class="col-lg-6 col-xl-6 d-flex justify-content-end pic_main" data-aos="fade-left"
                         data-aos-delay="200">
-                        <div class="pic_wrapper d-flex justify-content-center" style="background-image: url({{ asset('uploads/'.$hero->image) }});">
+                        <div class="pic_wrapper d-flex justify-content-center" style="background-image: url({{ asset('uploads/'.$hero->image ?? '') }});">
 
                         </div>
                     </div>
