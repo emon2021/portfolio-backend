@@ -145,31 +145,14 @@
                         <div data-aos="fade-right" data-aos-delay="400"
                             class="aboutLeft col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex align-items-center justify-content-center">
                             <div class="overflow-hidden text-center aboutImg">
-                                <img src="{{ asset('dist') }}/images/emon.me.jpg" class="about_img" alt="emon.me">
+                                <img src="{{ asset('uploads/'.$about->image ?? '') }}" class="about_img" alt="emon.me">
                             </div>
                         </div>
                         <!------about right----->
                         <div data-aos="fade-left" data-aos-delay="500"
                             class="aboutRight col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <div class="aboutText">
-
-                                <p>
-                                    Hello! My name is Limon, and I'm a passionate Laravel Developer who thrives on
-                                    creating dynamic experiences for the internet. With a strong foundation in web
-                                    development, I've been honing my skills since 2020 and continue to explore new
-                                    technologies and trends in the field.
-                                </p>
-                                <p>
-                                    I obtained my Diploma in Computer Science & Technology (CST) degree from Faridpur
-                                    Polytechnic Institute in 2024, which equipped me with comprehensive knowledge and
-                                    expertise in the domain. Throughout my academic journey and beyond, I've delved into
-                                    various programming languages and utilized them in real-world projects.
-                                </p>
-                                <p>
-                                    Here's a glimpse of the programming languages I'm proficient in and some of the
-                                    projects I've completed. These are mentioned below, you can scroll
-                                    through the project section.
-                                </p>
+                                {!! $about->description ?? '' !!}
                             </div>
                         </div>
                     </div>
