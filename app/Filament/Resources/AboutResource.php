@@ -20,8 +20,10 @@ use Illuminate\Database\Eloquent\Model;
 class AboutResource extends Resource
 {
     protected static ?string $model = About::class;
+    protected static ?string $navigationLabel = 'About';
+    protected static ?string $navigationIcon = 'heroicon-s-identification';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ? int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {

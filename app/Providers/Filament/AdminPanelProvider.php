@@ -27,6 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->brandName('A.E')
             ->path('admin')
+            //  dashboard
             ->login()
             ->colors([
                 'primary' => Color::Green,
