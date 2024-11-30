@@ -31,7 +31,7 @@
                 </ul>
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3 d-flex justify-content-end align-items-end">
-                <a href="{{ asset('uploads/'.$setting?->resume) ?? asset('uploads/limon-resume.pdf') }}" class="btn btn-outline-danger sayHi" download="limon-resume.pdf">download
+                <a href="{{ asset('uploads/'.$setting?->resume) ?? asset('dist/pdf/limon-resume.pdf') }}" class="btn btn-outline-danger sayHi" download="limon-resume.pdf">download
                     cv</a>
             </div>
             <!----offcanvas toggle button for mobile menu---->
@@ -569,8 +569,7 @@
                     <div class="m-auto text-center col-xl-6 col-lg-6 col-md-6 col-sm-6 sayHiAll">
                         <div class="text-center greetingsWrapper">
                             <p data-aos="fade-left"  class="greatings">
-                                Although I’m not currently looking for any new opportunities, my inbox is always open.
-                                Whether you have a question or just want to say hi, I’ll try my best to get back to you!
+                                {{ $setting->contact_text ?? "Hi there, how can I help you?" }}
                             </p>
                             <a data-aos="fade-up" target="_blank"  href="mailto:{{ $setting->email ?? "ahmedemon.dev24@gmail.com" }}"
                                 class="btn btn-outline-danger sayHi">Say Hello</a>

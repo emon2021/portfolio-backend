@@ -7,6 +7,7 @@ use App\Filament\Resources\SettingResource\RelationManagers;
 use App\Models\Setting;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -74,6 +75,12 @@ class SettingResource extends Resource
                     ->label('Email')
                     ->required()
                     ->maxLength(255),
+
+                RichEditor::make('contact_text')
+                    ->label('Contact Text')
+                    ->required()
+                    ->columnSpanFull()
+                    ->placeholder('Description')
             ]);
     }
 
