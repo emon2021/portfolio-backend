@@ -2,7 +2,7 @@
      <!----portfolio.header.section---->
     <nav class="navbar navbar-expand-lg navbarBackground">
         <div class="container">
-            <a href="#home" class="navbar-brand">A.E</a>
+            <a href="#home" class="navbar-brand">{{ $setting->logo_name ?? "A.E" }}</a>
 
             <!----nav links for desktop view---->
             <div class="col-md-6 col-lg-6 col-xl-6 collapse navbar-collapse justify-content-center align-items-center">
@@ -31,7 +31,7 @@
                 </ul>
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3 d-flex justify-content-end align-items-end">
-                <a href="{{ asset('dist') }}/pdf/resume_me.pdf" class="btn btn-outline-danger sayHi" download="limon-resume.pdf">download
+                <a href="{{ asset('uploads/'.$setting?->resume) ?? asset('uploads/limon-resume.pdf') }}" class="btn btn-outline-danger sayHi" download="limon-resume.pdf">download
                     cv</a>
             </div>
             <!----offcanvas toggle button for mobile menu---->
@@ -92,7 +92,7 @@
                                 <div class="banner-sub-heading">
                                     <h1 class="animated_text">
                                         <span class="typewrite" data-period="2000"
-                                            data-type='[ "Web Developer.", "Web Designer.","Programmer.","Fast Learner." ]'>
+                                            data-type='{{ json_encode(explode(',',$hero->rand_text)) ?? 'Nothing Found' }} '>
                                             <span class="wrap"></span>
                                         </span>
                                     </h1>
@@ -145,7 +145,7 @@
                         <div data-aos="fade-right" data-aos-delay="400"
                             class="aboutLeft col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex align-items-center justify-content-center">
                             <div class="overflow-hidden text-center aboutImg">
-                                <img src="{{ asset('uploads/'.$about->image ?? '') }}" class="about_img" alt="emon.me">
+                                <img src="{{ asset('uploads/'.$about?->image ?? '') }}" class="about_img" alt="emon.me">
                             </div>
                         </div>
                         <!------about right----->
@@ -417,112 +417,28 @@
                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                 <ul class="text-center box_filter" data-aos="fade-right" data-aos-delay="200">
                                     <li class="mt-1 box_control mixitup-control-active btn " data-filter="*">All</li>
-                                    <li class="mt-1 box_control btn " data-filter=".frontend">Frontend</li>
-                                    <li class="mt-1 box_control btn " data-filter=".backend">Backend</li>
-                                    <li class="mt-1 box_control btn " data-filter=".fullstack">Full Stack</li>
+                                    @foreach ($project_cat as $category)
+                                        <li class="mt-1 box_control btn " data-filter=".{{ $category->slug }}">{{ $category->name ?? "category name" }}</li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
                         <div class="row box_list">
-                            <div class="col-md-4 mix frontend"  data-aos="fade-up" >
-                                <div class="box_item_img">
-                                    <img src="{{ asset('dist') }}/images/projects/1.jpg" class="img-fluid" alt="project-1">
-                                    <div class="box_item_overlay">
-                                        <div class="box_item_text">
-                                            <h4>E-Commerce-FastEnergy</h4>
-                                            <p><i class="fa-solid fa-link"></i></p>
+                            @forelse ($projects as $project)
+                                <div class="col-md-4 mix {{ $project->category->slug }}">
+                                    <a href="{{ $project->link ?? "#" }}" class="box_item_img d-block">
+                                        <img src="{{ asset('uploads/'.$project?->image) }}" class="img-fluid" alt="project-1">
+                                        <div class="box_item_overlay">
+                                            <div class="box_item_text">
+                                                <h4>{{ $project->title ?? "project title" }}</h4>
+                                                <p><i class="fa-solid fa-link"></i></p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
-                            </div>
-                            <div class="col-md-4 mix backend"  data-aos="fade-up" >
-                                <div class="box_item_img">
-                                    <img src="{{ asset('dist') }}/images/projects/2.webp" class="img-fluid" alt="project-1">
-                                    <div class="box_item_overlay">
-                                        <div class="box_item_text">
-                                            <h4>E-Commerce-FastEnergy</h4>
-                                            <p><i class="fa-solid fa-link"></i></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mix frontend"  data-aos="fade-up" >
-                                <div class="box_item_img">
-                                    <img src="{{ asset('dist') }}/images/projects/3.jpg" class="img-fluid" alt="project-1">
-                                    <div class="box_item_overlay">
-                                        <div class="box_item_text">
-                                            <h4>E-Commerce-FastEnergy</h4>
-                                            <p><i class="fa-solid fa-link"></i></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mix fullstack"  data-aos="fade-up" >
-                                <div class="box_item_img">
-                                    <img src="{{ asset('dist') }}/images/projects/4.png" class="img-fluid" alt="project-1">
-                                    <div class="box_item_overlay">
-                                        <div class="box_item_text">
-                                            <h4>E-Commerce-FastEnergy</h4>
-                                            <p><i class="fa-solid fa-link"></i></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mix backend"  data-aos="fade-up" >
-                                <div class="box_item_img">
-                                    <img src="{{ asset('dist') }}/images/projects/5.png" class="img-fluid" alt="project-1">
-                                    <div class="box_item_overlay">
-                                        <div class="box_item_text">
-                                            <h4>E-Commerce-FastEnergy</h4>
-                                            <p><i class="fa-solid fa-link"></i></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mix fullstack"  data-aos="fade-up" >
-                                <div class="box_item_img">
-                                    <img src="{{ asset('dist') }}/images/projects/6.jpg" class="img-fluid" alt="project-1">
-                                    <div class="box_item_overlay">
-                                        <div class="box_item_text">
-                                            <h4>E-Commerce-FastEnergy</h4>
-                                            <p><i class="fa-solid fa-link"></i></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mix backend"  data-aos="fade-up" >
-                                <div class="box_item_img">
-                                    <img src="{{ asset('dist') }}/images/projects/7.webp" class="img-fluid" alt="project-1">
-                                    <div class="box_item_overlay">
-                                        <div class="box_item_text">
-                                            <h4>E-Commerce-FastEnergy</h4>
-                                            <p><i class="fa-solid fa-link"></i></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mix fullstack" data-aos="fade-up" >
-                                <div class="box_item_img">
-                                    <img src="{{ asset('dist') }}/images/projects/8.avif" class="img-fluid" alt="project-1">
-                                    <div class="box_item_overlay">
-                                        <div class="box_item_text">
-                                            <h4>E-Commerce-FastEnergy</h4>
-                                            <p><i class="fa-solid fa-link"></i></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mix backend" data-aos="fade-up" >
-                                <div class="box_item_img">
-                                    <img src="{{ asset('dist') }}/images/projects/9.png" class="img-fluid" alt="project-1">
-                                    <div class="box_item_overlay">
-                                        <div class="box_item_text">
-                                            <h4>E-Commerce-FastEnergy</h4>
-                                            <p><i class="fa-solid fa-link"></i></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @empty
+                                <h5 class="text-center text-danger">No project found :)</h5>
+                            @endforelse
                         </div>
 
                     </div>
@@ -542,316 +458,49 @@
                     </div>
                     <div class="testimonial_wrapper" >
                         <div class="slick_carousel">
-                            <div class="text-center slick_item" data-aos="fade-up" data-aos-delay="300">
-                                <div class="slick_inner col-md-6 col-lg-6 col-xl-6 col-sm-12 col-12">
-                                    <div class="item_top">
-                                        <h5 class="client_title fs-2">My Client</h5>
-                                        <h4 class="feedback">
-                                            Valuable Feedback
-                                        </h4>
-                                    </div>
-                                    <div class="item_btm">
-                                        <div class="testi_card">
-                                            <div class="testi_img">
-                                                <img src="{{ asset('dist') }}/images/emon.pro.png" alt="business">
-                                            </div>
-                                            <div class="testi_content">
-                                                <div class="text-left client">
-                                                    <h5>Mohammed Nur</h5>
-                                                    <p class="client_designation">
-                                                        Sr. Software Developer
-                                                    </p>
+                            @forelse ($testimonials as $testimonial)
+                                <div class="text-center slick_item" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="slick_inner col-md-6 col-lg-6 col-xl-6 col-sm-12 col-12">
+                                        <div class="item_top">
+                                            <h5 class="client_title fs-2">My Client</h5>
+                                            <h4 class="feedback">
+                                                Valuable Feedback
+                                            </h4>
+                                        </div>
+                                        <div class="item_btm">
+                                            <div class="testi_card">
+                                                <div class="testi_img">
+                                                    <img src="{{ asset('uploads/'.$testimonial?->image) }}" alt="business">
                                                 </div>
-                                                <div class="client_review">
-                                                    <div class="mb-2 review_star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
+                                                <div class="testi_content">
+                                                    <div class="text-left client">
+                                                        <h5>{{ $testimonial->name ?? "client name" }}</h5>
+                                                        <p class="client_designation">
+                                                            {{ $testimonial->designation ?? "client designation" }}
+                                                        </p>
                                                     </div>
-                                                    <p>
-                                                        <i class="fa-solid fa-quote-left"></i>
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        <i class="fa-solid fa-quote-right"></i>
-                                                    </p>
+                                                    <div class="client_review">
+                                                        <div class="mb-2 review_star">
+                                                            <i class="fa-solid fa-star"></i>
+                                                            <i class="fa-solid fa-star"></i>
+                                                            <i class="fa-solid fa-star"></i>
+                                                            <i class="fa-solid fa-star"></i>
+                                                            <i class="fa-solid fa-star"></i>
+                                                        </div>
+                                                        <p>
+                                                            <i class="fa-solid fa-quote-left"></i>
+                                                            {{ $testimonial->description ?? "client feedback" }}
+                                                            <i class="fa-solid fa-quote-right"></i>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="text-center slick_item" data-aos="fade-up" data-aos-delay="300">
-                                <div class="slick_inner col-md-6 col-lg-6 col-xl-6 col-sm-12 col-12">
-                                    <div class="item_top">
-                                        <h5 class="client_title fs-2">My Client</h5>
-                                        <h4 class="feedback">
-                                            Valuable Feedback
-                                        </h4>
-                                    </div>
-                                    <div class="item_btm">
-                                        <div class="testi_card">
-                                            <div class="testi_img">
-                                                <img src="{{ asset('dist') }}/images/emon.pro.png" alt="business">
-                                            </div>
-                                            <div class="testi_content">
-                                                <div class="text-left client">
-                                                    <h5>Mohammed Nur</h5>
-                                                    <p class="client_designation">
-                                                        Sr. Software Developer
-                                                    </p>
-                                                </div>
-                                                <div class="client_review">
-                                                    <div class="mb-2 review_star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </div>
-                                                    <p>
-                                                        <i class="fa-solid fa-quote-left"></i>
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        <i class="fa-solid fa-quote-right"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center slick_item" data-aos="fade-up" data-aos-delay="300">
-                                <div class="slick_inner col-md-6 col-lg-6 col-xl-6 col-sm-12 col-12">
-                                    <div class="item_top">
-                                        <h5 class="client_title fs-2">My Client</h5>
-                                        <h4 class="feedback">
-                                            Valuable Feedback
-                                        </h4>
-                                    </div>
-                                    <div class="item_btm">
-                                        <div class="testi_card">
-                                            <div class="testi_img">
-                                                <img src="{{ asset('dist') }}/images/emon.pro.png" alt="business">
-                                            </div>
-                                            <div class="testi_content">
-                                                <div class="text-left client">
-                                                    <h5>Mohammed Nur</h5>
-                                                    <p class="client_designation">
-                                                        Sr. Software Developer
-                                                    </p>
-                                                </div>
-                                                <div class="client_review">
-                                                    <div class="mb-2 review_star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </div>
-                                                    <p>
-                                                        <i class="fa-solid fa-quote-left"></i>
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        <i class="fa-solid fa-quote-right"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center slick_item" data-aos="fade-up" data-aos-delay="300">
-                                <div class="slick_inner col-md-6 col-lg-6 col-xl-6 col-sm-12 col-12">
-                                    <div class="item_top">
-                                        <h5 class="client_title fs-2">My Client</h5>
-                                        <h4 class="feedback">
-                                            Valuable Feedback
-                                        </h4>
-                                    </div>
-                                    <div class="item_btm">
-                                        <div class="testi_card">
-                                            <div class="testi_img">
-                                                <img src="{{ asset('dist') }}/images/emon.pro.png" alt="business">
-                                            </div>
-                                            <div class="testi_content">
-                                                <div class="text-left client">
-                                                    <h5>Mohammed Nur</h5>
-                                                    <p class="client_designation">
-                                                        Sr. Software Developer
-                                                    </p>
-                                                </div>
-                                                <div class="client_review">
-                                                    <div class="mb-2 review_star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </div>
-                                                    <p>
-                                                        <i class="fa-solid fa-quote-left"></i>
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        <i class="fa-solid fa-quote-right"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center slick_item" data-aos="fade-up" data-aos-delay="300">
-                                <div class="slick_inner col-md-6 col-lg-6 col-xl-6 col-sm-12 col-12">
-                                    <div class="item_top">
-                                        <h5 class="client_title fs-2">My Client</h5>
-                                        <h4 class="feedback">
-                                            Valuable Feedback
-                                        </h4>
-                                    </div>
-                                    <div class="item_btm">
-                                        <div class="testi_card">
-                                            <div class="testi_img">
-                                                <img src="{{ asset('dist') }}/images/emon.pro.png" alt="business">
-                                            </div>
-                                            <div class="testi_content">
-                                                <div class="text-left client">
-                                                    <h5>Mohammed Nur</h5>
-                                                    <p class="client_designation">
-                                                        Sr. Software Developer
-                                                    </p>
-                                                </div>
-                                                <div class="client_review">
-                                                    <div class="mb-2 review_star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </div>
-                                                    <p>
-                                                        <i class="fa-solid fa-quote-left"></i>
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        consequuntur
-                                                        officiis
-                                                        perferendis.
-                                                        <i class="fa-solid fa-quote-right"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @empty
+                                <h5 class="text-center text-danger">No Testimonials Found :)</h5>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -923,7 +572,7 @@
                                 Although I’m not currently looking for any new opportunities, my inbox is always open.
                                 Whether you have a question or just want to say hi, I’ll try my best to get back to you!
                             </p>
-                            <a data-aos="fade-up"  href="mailto:mdemonahmed2021@gmail.com"
+                            <a data-aos="fade-up" target="_blank"  href="mailto:{{ $setting->email ?? "ahmedemon.dev24@gmail.com" }}"
                                 class="btn btn-outline-danger sayHi">Say Hello</a>
                         </div>
                     </div>
