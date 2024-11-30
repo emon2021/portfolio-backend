@@ -282,10 +282,15 @@
                                 <div class="card_body">
                                     <div class="d-flex align-items-center justify-content-center flex-column">
                                         <div class="mainIcon mainIcon7">
-                                            <span class="icon-wordpress"></span>
+                                            <span class="icon-livewire">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap">
+                                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                                </svg>
+                                            </span>
+
                                         </div>
                                         <p class="iconTitle">
-                                            Wordpress
+                                            Livewire
                                         </p>
                                     </div>
                                 </div>
