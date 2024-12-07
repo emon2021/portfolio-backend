@@ -90,6 +90,8 @@
     outline: none;
     width: 180px;
     z-index: 100;
+    outline: 3px solid #ff4115 !important;
+    outline-offset: 2px !important;
   }
 
   .toggle-chat:hover,
