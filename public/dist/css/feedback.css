@@ -101,9 +101,10 @@
 
   .toggle-chat.chat-is-open {
     flex-direction: column;
-    width: 60px;
+    width: 34px;
     outline: 3px solid #ff4115;
     outline-offset: 2px;
+    height: 50px;
   }
 
   .open-chat {

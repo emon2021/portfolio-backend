@@ -674,7 +674,7 @@
 
           <button class="toggle-chat chat-is-open" style="overflow: hidden">
 
-            <img class="" style="width: 60px; height: 60px" src="{{ asset('dist') }}/images/notebook.gif" alt="">
+            <img class="" style="width: 50px; height: 50px" src="{{ asset('dist') }}/images/idea.gif" alt="">
           </button>
         <!-----/give feedback---->
 
