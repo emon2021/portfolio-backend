@@ -16,6 +16,8 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
         <!-----favicon---->
         <link rel="icon" type="image/icon" href="{{ asset('dist') }}/images/favicon/favicon.png">
+        <!----feedback.css---->
+        <link rel="stylesheet" href="{{ asset('dist') }}/css/feedback.css">
         <!----custom.style.css---->
         <link rel="stylesheet" href="{{ asset('dist') }}/css/style.css">
         <link rel="stylesheet" href="{{ asset('dist') }}/css/responsive.css">
@@ -46,6 +48,8 @@
     </script>
     <!-------animated.text.js----->
     <script src="{{ asset('dist') }}/js/animated_text.js"></script>
+    <!----feedback.js---->
+    <script src="{{ asset('dist') }}/js/feedback.js"></script>
     <!----custom.app.js---->
     <script src="{{ asset('dist') }}/js/app.js"></script>
      <!-- custom jquery -->
